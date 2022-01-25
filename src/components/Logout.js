@@ -18,7 +18,7 @@ const Logout = (props) => {
             token: token,
         }
 
-        axios.post('http://localhost:9000/api/logout',{
+        axiosWithAuth().post('http://localhost:9000/api/logout',{
             credentials: credentials
         })
             .then(res=>{

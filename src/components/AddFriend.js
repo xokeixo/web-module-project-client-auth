@@ -1,6 +1,8 @@
 import React from "react";
 import axios from "axios";
 
+import axiosWithAuth from './../utils/axiosWithAuth';
+
 class AddFriend extends React.Component {
     state = {
         friend: {
@@ -20,7 +22,7 @@ class AddFriend extends React.Component {
         e.preventDefault()
         const token = localStorage.getItem('token')
 
-        axios.post('http://localhost:9000/api/friends', {
+        axiosWithAuth().post('/friends', {
             id: parseInt(Math.random()*100),
             name: this.state.friend.name,
             email: this.state.friend.email,
