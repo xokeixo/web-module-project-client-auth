@@ -10,7 +10,7 @@ class FriendsList extends React.Component {
     componentDidMount() {
         const token = localStorage.getItem('token')
 
-        axios.get('/api/friends', {
+        axios.get('http://localhost:9000/api/friends', {
             headers: {
                 authorization: token
             }

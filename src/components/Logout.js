@@ -8,12 +8,26 @@ const Logout = (props) => {
     const { push } = useHistory();
 
     useEffect(() => {
-        axiosWithAuth()
-        .post('/logout')
-        .then(resp => {
-            localStorage.removeItem('token')
-            push('/login')
+        const token = localStorage.getItem('token')
+        const role = localStorage.getItem('role')
+        const username = localStorage.getItem('username')
+
+        const credentials = {
+            username: username,
+            role: role,
+            token: token,
+        }
+
+        axios.post('http://localhost:9000/api/logout',{
+            credentials: credentials
         })
+            .then(res=>{
+                console.log(res)
+                props.history.push('/')
+            })
+            .catch(err=>{
+                console.log(err)
+            })
     }, [])
 
     return(
@@ -23,21 +37,5 @@ const Logout = (props) => {
     )
 };
 
-// const Logout = ()=> {
-//     const { push } = useHistory();
-
-//     useEffect(()=> {
-//         axiosWithAuth()
-//             .post('/logout')
-//             .then(resp=>{
-//                 localStorage.removeItem("token");
-//                 push('/login');
-//             }).catch(err=> {
-//                 console.log(err);
-//             });
-//     }, []);
-    
-//     return(<div></div>);
-// }
 
 export default Logout;

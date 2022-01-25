@@ -20,7 +20,7 @@ class AddFriend extends React.Component {
         e.preventDefault()
         const token = localStorage.getItem('token')
 
-        axios.post('/api/friends', {
+        axios.post('http://localhost:9000/api/friends', {
             id: parseInt(Math.random()*100),
             name: this.state.friend.name,
             email: this.state.friend.email,
